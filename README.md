@@ -21,15 +21,19 @@ Add to Pi:
 ```
 sudo nano /etc/wpa-supplicant/wpa_supplicant.conf 
 ```
+```
 network = { ssid = "Hotspot Name" psk = "Password" }
 ```
 Pressing Ctrl+X then Y, finally press Enter
 ```
+```
 If error, restart with " sudo ifdown wlan0" and " sudo ifup wlan0" 
+```
 ```
 Verify Succeed:
 ```
 ifconfig wlan0 
+```
 ```
 inet addr 
 ```
