@@ -44,19 +44,19 @@ $(function(){
     console.log(loc)
   
     // call weather api
-     $.getJSON("http://api.openweathermap.org/data/2.5/weather?&units=imperial&lat=" + loc[0] + "&lon=" + loc[1] + "&APPID=" + API_KEY, function(apiData){
-       wd = apiData;
+    $.getJSON("http://api.openweathermap.org/data/2.5/weather?&units=imperial&lat=" + loc[0] + "&lon=" + loc[1] + "&APPID=" + API_KEY, function(apiData){
+      wd = apiData;
        
-       console.log('got the data,',wd)
+      console.log('got the data,',wd)
        
-       render(wd,cel);
+      render(wd,cel);
        
-       $("#toggle").click(function(){
-         cel = !cel;
-         render(wd,cel);
-       })
+      $("#toggle").click(function(){
+        cel = !cel;
+        render(wd,cel);
+      })
        
-     })
+    })
   
   
   })

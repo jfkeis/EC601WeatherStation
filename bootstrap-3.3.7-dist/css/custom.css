@@ -20,6 +20,14 @@ body {
 	padding-bottom: 100px;
 }
 
+#brand-image {
+	height: 50px;
+}
+
+.nav-container {
+	padding-top: 8px;
+}
+
 .navbar-default {
 	background-color: #2C3E50;
 	border-color: #FFFFFF;
