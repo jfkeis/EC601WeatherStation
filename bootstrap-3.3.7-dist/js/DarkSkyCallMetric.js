@@ -25,11 +25,11 @@ $(function(){
 
     $('#currentLocation').html(currentlocationlat + ", " + currentlocationlon);
     $('#currentIcon').html("");
-    $('#currentTemp').html(currenttemp + "°F");
+    $('#currentTemp').html(Math.round((currenttemp-32)*(5/9)*100)/100 + "°C");
     $('#currentWeather').html(currentweather);
-    $('#currentFeels').html(feels + "°F");
+    $('#currentFeels').html(Math.round((feels-32)*(5/9)*100)/100 + "°C");
     $('#currentHumidity').html(Math.round(humidity*100) + "%");
-    $('#currentWindSp').html(windSpeed + " mph");
+    $('#currentWindSp').html(Math.round(windSpeed*0.44704*100)/100 + " m/s");
     $('#currentWindDir').html(windDir + "°");
 
     $('#currentIcon').prepend('<img src="img/' + icon + '.png">')
