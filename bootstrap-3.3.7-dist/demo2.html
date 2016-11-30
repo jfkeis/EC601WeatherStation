@@ -10,7 +10,8 @@
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 
       <link rel="stylesheet" href="css/custom.css">
-  
+  <script src='Chart.min.js'></script>
+
 </head>
 
   <body>
@@ -49,19 +50,7 @@
             </div>
           </div>
 
-      <div id="container">
-        <div></div>
-        <div class="center-text content-title"><h1 id="currentLocation">Getting Location...</h1></div>
-        <h2 class="center-text content-title" id="currentTemp">Loading Temperature...</h2>
-        <h6 class="center-text"><a href="#" id="toggle">Toggle C/F</a></h6>
-        <div class="content-body">
-          <!-- <p class="center-text" id='high-low'></p> -->
-          <p class="center-text" id='currentWeather'> </p>
-          <p class="center-text" id='currentWindSp'> </p>
-          <p class="center-text" id='currentWindDir'> ° </p>
-
-        </div>
-      </div>
+      <canvas id="lineChart" height="150" width="400"></canvas>
 
       <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
             <div class="container">

@@ -1,65 +1,138 @@
-// get lat and long
-$(function(){
-  
-  API_KEY = "3d95225d5d94f1f4a7ddcc1add83e048";
-  var loc;
-  var cel = false;
-  var wd;
-  
-  function displayTemp(fTemp,c){
-    if(c) return ((fTemp-32)*(5/9)).toFixed(2)+" C";
-    return (fTemp).toFixed(2) + " F"
-  }
 
-  function displayWind(fWind,c){
-    if(c) return (fWind * 0.44704).toFixed(2)+" m/s";
-    return (fWind).toFixed(2)+" mph"
-  }
-  
-  function render(wd,cel){
-    var currentlocation = wd.name;
-    var currentweather = wd.weather[0].description;
-    var currenttemp = displayTemp(wd.main.temp, cel);
-    var high = displayTemp(wd.main.temp_max, cel);
-    var low = displayTemp(wd.main.temp_min, cel);
-    var icon = wd.weather[0].icon;
-    var windSpeed = displayWind(wd.wind.speed, cel);
-    var windDir = wd.wind.deg;
-
-    $('#currentLocation').html(currentlocation);
-    $('#currentTemp').html(currenttemp);
-    $('#currentWeather').html(currentweather);
-    //$('#high-low').html(high + " / " + low)
-    $('#currentWindSp').html(windSpeed);
-    $('#currentWindDir').html(windDir + "°");
-
-    var iconSrc = "http://openweathermap.org/img/w/" + icon + ".png";
-
-    $('#currentTemp').prepend('<img src="' + iconSrc + '">')
-  }
-  
-  $.getJSON('http://ipinfo.io', function(d){
-    console.log("assigning the data...")
-    loc = d.loc.split(",");
-    console.log(loc)
-  
-    // call weather api
-    $.getJSON("http://api.openweathermap.org/data/2.5/weather?&units=imperial&lat=" + loc[0] + "&lon=" + loc[1] + "&APPID=" + API_KEY, function(apiData){
-      wd = apiData;
-       
-      console.log('got the data,',wd)
-       
-      render(wd,cel);
-       
-      $("#toggle").click(function(){
-        cel = !cel;
-        render(wd,cel);
+        var ctx = document.getElementById("lineChart").getContext("2d");
+        var myLineChart = new Chart(ctx, {
+          responsive: true, 
+          scaleFontColor: "#FFFFFF",
+          type: 'line',
+          data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "Temperature",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(0,0,0 ,0.4)",
+                    borderColor: "rgba(0,0,0,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(0,0,0,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(0,0,0,1)",
+                    pointHoverBorderColor: "rgba(0,0,0,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [35, 33, 38, 45, 60, 67, 77],
+                    spanGaps: false,
+                },
+                {
+                    label: "Feels Like",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [30, 31, 37, 45, 63, 72, 85],
+                    spanGaps: false,
+                }
+              ]
+            },
+            options: { 
+              legend: {labels:{fontColor:"white", fontSize: 14}},
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          fontColor: "white",
+                          fontSize: 12,
+                          stepSize: 10,
+                          beginAtZero:true
+                      }
+                  }],
+                  xAxes: [{
+                      ticks: {
+                          fontColor: "white",
+                          fontSize: 14,
+                          stepSize: 1,
+                          beginAtZero:true
+                      }
+                  }]
+              }
+            }
       })
-       
-    })
-  
-  
+
+/**
+$(function () {
+  var ctx = $('lineChart');
+  var graph = new Chart(ctx,{
+    type:"line",
+    data: {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [
+          {
+              label: "My First dataset",
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: "rgba(150,192,192,0.4)",
+              borderColor: "rgba(75,192,192,1)",
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: [64, 58, 81, 83, 55, 52, 43],
+              spanGaps: false,
+          },
+          {
+              label: "My First dataset",
+              fill: false,
+              lineTension: 0.1,
+              backgroundColor: "rgba(75,192,192,0.4)",
+              borderColor: "rgba(75,192,192,1)",
+              borderCapStyle: 'butt',
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: 'miter',
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: [65, 59, 80, 81, 56, 55, 40],
+              spanGaps: false,
+          }
+      ]
+    }
   })
-  
-  
-})
+  var option = {};
+
+  var ctx = document.getElementById("lineChart").getContext('2d');
+  var myLineChart = new Chart(ctx).Bar(data, option);
+})(jQuery); **/
