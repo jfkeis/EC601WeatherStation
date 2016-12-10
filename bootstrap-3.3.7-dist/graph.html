@@ -6,10 +6,35 @@
         <script src='Chart.min.js'></script>
     </head>
     <body>
-    	<canvas id="lineChart" width="600" height="400"></canvas>
+
+        <h1 id="temperature"> </h1>
+    	<!--<canvas id="lineChart" width="600" height="400"></canvas>-->
     	
-    	<script src="js/page3.js"></script>
-    	<!--<script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-storage.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCOJ2bST6syaccYDQwH8lXH5YnnYrUz2iY",
+            authDomain: "weathernow-db3fe.firebaseapp.com",
+            databaseURL: "https://weathernow-db3fe.firebaseio.com",
+            storageBucket: "weathernow-db3fe.appspot.com",
+            messagingSenderId: "883651562249"
+          };
+          firebase.initializeApp(config);
+
+          var temperature = document.getElementById('temperature');
+          var dbRef = firebase.database().ref().child('hourly/hour/temperature')
+          dbRef.on('value', snap => temperature.innerText = snap.val());
+
+        </script>
+    	<!--<script src="js/page3.js"></script>-->
+        <!--<script>
     		var ctx = document.getElementById("lineChart").getContext("2d");
     		var myLineChart = new Chart(ctx, {
     			type: 'line',
