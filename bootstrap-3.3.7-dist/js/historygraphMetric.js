@@ -12,6 +12,13 @@ var pilist = [];
 var windlist = [];
 var feellist = [];
 
+function convertTemp(c) {
+  return (c-32)*5/9;
+}
+function convertWind(m) {
+  return m*0.44704;
+}
+
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -32,13 +39,11 @@ function timeConverter(UNIX_timestamp){
 function render(wd,fb){
 
   for (i = 0; i < 24; i++) {
-    templist.push(Math.round(wd.hourly.data[i].temperature));
+    templist.push(Math.round(convertTemp(wd.hourly.data[i].temperature)*10)/10);
     timelist.push(timeConverter(wd.hourly.data[i].time).toString());
-    windlist.push(Math.round(wd.hourly.data[i].windSpeed));
-    feellist.push(Math.round(wd.hourly.data[i].apparentTemperature));
+    windlist.push(Math.round(convertWind(wd.hourly.data[i].windSpeed)*10)/10);
+    feellist.push(Math.round(convertTemp(wd.hourly.data[i].apparentTemperature)*10)/10);
   }
-
-  console.log(feellist)
 
   var ctx = document.getElementById("lineChart").getContext("2d");
   var myLineChart = new Chart(ctx, {
@@ -93,7 +98,7 @@ function render(wd,fb){
               spanGaps: false,
           },
           {
-              label: "Wind Speed (MPH)",
+              label: "Wind Speed (M/S)",
               fill: false,
               lineTension: 0.1,
               backgroundColor: "rgba(66,244,149,0.7)",
@@ -135,14 +140,14 @@ function render(wd,fb){
             yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: 'Temperature (°F)',
+                  labelString: 'Temperature (°C)',
                   fontColor: 'white',
                   fontSize: 12
                 },
                 ticks: {
                     fontColor: "white",
                     fontSize: 12,
-                    stepSize: 10,
+                    stepSize: 5,
                     beginAtZero:true
                 }
             }],

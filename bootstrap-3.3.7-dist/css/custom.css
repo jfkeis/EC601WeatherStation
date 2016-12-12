@@ -69,6 +69,10 @@ body {
 	color: #FFFFFF;
 }
 
+.btn-danger {
+	margin-bottom: 10px;
+}
+
 .btn-primary {
 	background-color: #2C3E50;
 	border-color: #2C3E50;

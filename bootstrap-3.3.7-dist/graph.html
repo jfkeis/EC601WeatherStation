@@ -8,9 +8,8 @@
     <body>
 
         <h1 id="temperature"> </h1>
-    	<!--<canvas id="lineChart" width="600" height="400"></canvas>-->
+    	<canvas id="lineChart" width="600" height="400"></canvas>
     	
-
         <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-auth.js"></script>
@@ -33,7 +32,8 @@
           dbRef.on('value', snap => temperature.innerText = snap.val());
 
         </script>
-    	<!--<script src="js/page3.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	
         <!--<script>
     		var ctx = document.getElementById("lineChart").getContext("2d");
     		var myLineChart = new Chart(ctx, {
@@ -53,4 +53,5 @@
 			})
 		</script> -->
     </body>
+    <script src="js/pastgraph.js"></script>
 </html>
