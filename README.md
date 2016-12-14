@@ -1,7 +1,7 @@
 # EC601WeatherStation
 EC601 Project
 ## Team Members: 
-Qing Lu:Anand Shivalkar;John Keisling;
+Qing Lu:Anand Shivalkar;John Keisling;Sigurdur Thorvaldsson
 
 ## Website
 Add all files from bootstrap-3.3.7-dist into the same folder.  Access live website via AWS: http://ec601weathernow.com.s3-website-us-east-1.amazonaws.com/
