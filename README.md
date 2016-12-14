@@ -3,6 +3,9 @@ EC601 Project
 ## Team Members: 
 Qing Lu:Anand Shivalkar;John Keisling;
 
+## Website
+Add all files from bootstrap-3.3.7-dist into the same folder.  Access live website via AWS: http://ec601weathernow.com.s3-website-us-east-1.amazonaws.com/
+
 ## Data Cloud -- Dark Sky API
 ```
 login username: luq001@bu.edu
